@@ -35,11 +35,10 @@ skills = ["python","design","presention","leadership","selfies","eating"]
 cv['skills'].append(skills[skill_number1 - 1 ])
 cv['skills'].append(skills[skill_number2 - 1 ])
 
-if ( 25 < cv['age'] < 40  ) and ( cv['experience'] > 3 ):
-	if "python" in cv['skills']:
-		print (" \n\n you have been accpted ,   " , cv['name'] )
-	else:
-	    print (" \n\n unfortunatly " , cv['name'] , "  you do not fit the criteria > ")	
+if ( 25 < cv['age'] < 40  ) and ( cv['experience'] > 3 ) and "python" in cv['skills']:
+	print (" \n\n you have been accpted ,   " , cv['name'] )
+else:
+    print (" \n\n unfortunatly " , cv['name'] , "  you do not fit the criteria > ")	
 
 
 
