@@ -1,103 +1,96 @@
+from datetime import date
 
-# function print menu 
-def print_menu():
-	print ("\n options: \n")
-	print ("    1. show Emplyees \n")
-	print ("    2. show Manager  \n")
-	print ("    3. add an Employee \n")
-	print ("    4. add a Manager \n")
-	print ("    5. Exit  \n\n ")
+class Employee:
+    def __init__ (self,name,age,salary,employemnt_year):
+        self.name = name 
+        self.age = age
+        self.salary = salary
+        self.employemnt_year = employemnt_year
 
-	return
 
-#-----------------------------------------
-# 1. 
-def show_employees(Employee_list):
-    print ("\n Emplyees \n ")
-    print (Employee_list)
-    print ( " \n ------------------- \n ")
+    def get_work_year(self):
+        return date.today().year - int(self.employemnt_year)
+
+
+    def __str__(self):  
+        return f"name: {self.name},   age: {self.age},  salary: {self.salary}, working year: {self.get_work_year()}"
+    #  return   print ("name:  %s,  age: %s,  salary:  %s , working year:  %s "  % (self.name, self.age, self.salary, self.get_work_year())) 
+
+
+class Manager(Employee):
+    def __init__(self,name,age,salary,employemnt_year,bonus_percentage):
+        super().__init__(name,age,salary,employemnt_year)
+        self.bonus_percentages = bonus_percentage
+
+
+    def get_bonus(self):
+        return float(self.bonus_percentages) * float(self.salary)
+
+    def __str__(self):
+        #return   print ("name:  %s,  age: %s,  salary:  %s , working year:  %s , bonus: %f"  % (self.name, self.age, self.salary, self.get_work_year(), self.bonus))
+        return f"name: {self.name},   age: {self.age},  salary: {self.salary}, working year: {self.get_work_year()}, bonus: {self.get_bonus()}"
+
+
+
+
+
+
+employees = []
+managers = []
+
+print('\nWelcome to HR Pro 2019\n')
+print ("""
+            Options:
+            1. Show Employees
+            2. Show Managers
+            3. Add An Employee
+            4. Add A Manager
+            5. Exit
+    """)
+
+print ()
+
+
+
+choice = int(input("what would you like to do, my master ? "))
+
+while choice != 5:
+    if choice == 1:
+        for employee in employees:
+            print (employee)
+
+    elif choice == 2:
+        for manager in managers:
+            print(manager)
+
+    elif choice == 3:
+        name = input("name: ")
+        age = input("age: ")
+        salary = input("salary: ")
+        employemnt_date = input("employemnt_date: ")
+        employee_obj = Employee(name,age,salary,employemnt_date)
+        employees.append(employee_obj)
+
+    elif choice == 4:
+        name = input("name: ")
+        age = input("age: ")
+        salary = input("salary: ")
+        employemnt_date = input("employemnt_date: ")
+        bonus = input("bonus: ")
+        employee_obj = Manager(name,age,salary,employemnt_date,bonus)
+        managers.append(employee_obj)
+
     
-    Employee_list
-	#return Employee_list
+    print('\n\nWelcome to HR Pro 2019\n')
+    print ("""
+            Options:
+            1. Show Employees
+            2. Show Managers
+            3. Add An Employee
+            4. Add A Manager
+            5. Exit
+         """)
 
-
-#----------------------------------------
-# 2. 
-def show_manager(manager_list):
-    print ("\n Manager \n ")
-    print (manager_list)
-    print ( " \n ------------------- \n ")
-    
-	#return manager_list
-	#manager_list
-
-
-#---------------------------------------
-# 3. 
-def add_employees(Employee_list):
-    name = input("name:  : ")
-    age = int(input("age:  "))
-    salary = input("salary:   ")
-    Employee_year = input("Employement year:   ")
-    print ( " \n Employee added succefully \n ")
-    print ( " ------------------------------- \n \n ")
-    
-    Employee_list
-	#return Employee_list
-    
-
-#-------------------------------------
-# 4. 
-def add_manager(manager_list):
-    name = input("name:   ")
-    age = int(input("age:  "))
-    salary = input("salary:   ")
-    Employee_year = input("Employement year:   ")
-    bonus_percentage = input("Bonus percentage:   ")
-    print ( " \n Manager added succefully \n ")
-    print ( " ------------------------------- \n \n ")
-
-	#return manager_list
-	#manager_list
-
-
-
-
-
-#-------------------------------------
-#-------------------------------------
-# main program
-
-print ("\n\nWelcome to HR Pro 2019  \n\n ")
-
-Employee_list = []
-manager_list = []
-
-choice = int(input("what would you like to do ? " ))   
-
-while (choice != 1 or choice != 2 or choice != 3 or choice != 4 or  choice != 5) :
-	print_menu()
-
-	choice = int(input("what would you like to do ? " )) 
-	print ("--------------------------\n")
-		
-
-	if choice == 1:
-	   Employee_list = show_employees(Employee_list)
-	elif  choice == 2:
-		manager_list = show_manager(manager_list)
-	elif choice == 3:
-	    Employee_list = add_employees(Employee_list)
-	elif choice == 4:
-		manager_list = add_manager(manager_list)
-	elif choice == 5:
-	    print ("\n\nExit\n\n")
-	    break 
-	else:
-	    print ("Error : " , choice , " is not a menu option  \n\n\n\n\n" )
-print ( " \n\n Exit \n\n  ")
-
-
-
-
+    print ()
+    choice = int(input("\nwhat would you like to do, my master ? \n"))
 
